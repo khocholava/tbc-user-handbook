@@ -3,23 +3,25 @@
 :host {
   @include center();
   margin-top: 5rem;
-.table-container {
-  width: 95%;
-  table {
-    width: 100%;
 
-    .avatar-container {
-      height: 40px;
-      width: 100px;
+  .table-container {
+    width: 95%;
 
-      img {
-        height: 100%;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center
+    table {
+      width: 100%;
+
+      .avatar-container {
+        height: 40px;
+        width: 100px;
+
+        img {
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center
+        }
       }
     }
   }
-}
 }

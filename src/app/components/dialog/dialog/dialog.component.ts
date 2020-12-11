@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  title$ = new BehaviorSubject<string>('დამატება');
+  title$ = new BehaviorSubject<string>('addUser');
 
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
@@ -18,11 +18,9 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      this.title$.next('რედაქტირება');
+      this.title$.next('editUser');
     } else {
-      this.title$.next('დამატება');
+      this.title$.next('addUser');
     }
   }
-
-
 }

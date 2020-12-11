@@ -10,10 +10,12 @@ export interface CurrencyType {
   id: number;
   value: string;
 }
-export interface AccountType  {
+
+export interface AccountType {
   id: number;
   value: string;
 }
+
 export interface AccountStatusType {
   id: number;
   value: string;

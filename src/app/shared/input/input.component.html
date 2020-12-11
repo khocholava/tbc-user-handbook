@@ -2,13 +2,13 @@
   <mat-label>{{label}}</mat-label>
   <input
     #input
-    matInput
+    (ngModelChange)="handleChange($event)"
     [autocomplete]="autocomplete"
     [autofocus]="autofocus"
     [ngModel]="_value"
     [readonly]="readonly"
     [type]="type"
-    (ngModelChange)="handleChange($event)"
+    matInput
   >
 
   <mat-icon *ngIf="icon" matPrefix>flight_land</mat-icon>

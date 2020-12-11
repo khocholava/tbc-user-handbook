@@ -2,6 +2,7 @@ import {User} from '../../models/user';
 
 export class QueryUsers {
   static readonly type = '[User] Query Users';
+
   constructor() {
     console.log('Query Users');
   }
@@ -9,6 +10,7 @@ export class QueryUsers {
 
 export class QuerySingleUser {
   static readonly type = '[User] Query Single User';
+
   constructor(readonly userId: number) {
   }
 }

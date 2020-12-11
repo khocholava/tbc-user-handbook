@@ -16,6 +16,7 @@ import {DialogComponent} from './components/dialog/dialog/dialog.component';
 import {DialogFormComponent} from './components/dialog/dialog-form/dialog-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputComponent} from './shared/input/input.component';
+import {TranslocoRootModule} from './transloco/transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {InputComponent} from './shared/input/input.component';
     }),
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslocoRootModule
   ],
   providers: [
     {

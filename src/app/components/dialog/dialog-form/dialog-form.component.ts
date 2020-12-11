@@ -13,14 +13,6 @@ export class DialogFormComponent implements OnInit {
   constructor() {
   }
 
-  createFormGroup(): FormGroup {
-    return new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      phoneNumber: new FormControl('')
-    });
-  }
-
   @Input()
   set data(data: User) {
     if (data) {
@@ -28,6 +20,14 @@ export class DialogFormComponent implements OnInit {
     } else {
       console.log('no data');
     }
+  }
+
+  createFormGroup(): FormGroup {
+    return new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      phoneNumber: new FormControl('')
+    });
   }
 
   ngOnInit(): void {

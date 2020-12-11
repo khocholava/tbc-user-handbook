@@ -1,14 +1,14 @@
-<form class="form" action="" [formGroup]="formGroup">
+<form [formGroup]="formGroup" action="" class="form">
   <app-input
-    [label]="'First Name'"
+    [label]="'firstName' | transloco"
     formControlName="firstName"
   ></app-input>
   <app-input
-    [label]="'Last Name'"
+    [label]="'lastName'|transloco"
     formControlName="lastName"
   ></app-input>
   <app-input
-    [label]="'Phone Number'"
+    [label]="'phoneNumber' | transloco"
     formControlName="phoneNumber"
   ></app-input>
 </form>

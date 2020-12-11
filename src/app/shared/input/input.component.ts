@@ -23,7 +23,6 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   @Input() icon: string;
   @Input() hint: string;
   @Input() type: InputType = 'text';
-  _value: string;
   onChange: (value?: any) => void;
   onTouched: (event?: any) => void;
   @ViewChild('input', {static: false}) input: ElementRef;
@@ -33,14 +32,16 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   constructor() {
   }
 
-  ngOnInit(): void {
-    }
+  _value: string;
 
   set value(val) {
     console.log(val);
     this._value = val;
     this.onChange(val);
     this.onTouched();
+  }
+
+  ngOnInit(): void {
   }
 
   ngAfterViewInit() {

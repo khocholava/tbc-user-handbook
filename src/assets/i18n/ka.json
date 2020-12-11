@@ -1,0 +1,28 @@
+{
+  "editUser": "მომხმარებლის რედაქტირება",
+  "firstName": "სახელი",
+  "lastName": "გვარი",
+  "gender": "სქესი",
+  "phoneNumber": "ტელეფონის ნომერი",
+  "image": "ფოტოსურათი",
+  "legalAddress": "იურიდიული მისამართი",
+  "country": "ქცეყანა",
+  "city": "ქალაქი",
+  "address": "მისამართი",
+  "account": "ანგარიში",
+  "accountNumber": "ანგარიშის ნომერი",
+  "clintNumber": "კლიენტის ნომერი",
+  "accountType": "ანგარიშის ტიპი",
+  "currency": "ვალუტა",
+  "accountStatus": "ანგარიშის სტატუსი",
+  "actualAddress": "ანგარიშის სტატუსი",
+  "save": "შენახვა",
+  "edit": "რედაქტირება",
+  "remove": "წაშლა",
+  "cancel": "გაუქმება",
+  "avatar": "ავატარი",
+  "close": "დახურვა",
+  "messages": {
+    "successfullyDeleted": "მომხმარევებელი წარმატებით წაიშალა"
+  }
+}

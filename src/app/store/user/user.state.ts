@@ -15,7 +15,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserState {
   constructor(
-    private userService: UserService
+    private userService: UserService,
   ) {
   }
 
@@ -89,7 +89,7 @@ export class UserState {
           ...state,
           users: filteredUsers
         });
-      })
+      }),
     );
   }
 }

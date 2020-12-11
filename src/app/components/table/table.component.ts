@@ -1,14 +1,16 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {Select, Store} from '@ngxs/store';
+import {Actions, ofActionSuccessful, Select, Store} from '@ngxs/store';
 import {UserSelectors} from '../../store/user/user.selectors';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user';
-import {QueryUsers} from '../../store/user';
+import {QueryUsers, RemoveUser} from '../../store/user';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../dialog/dialog/dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslocoService} from '@ngneat/transloco';
 
 @Component({
   selector: 'app-table',
@@ -30,14 +32,31 @@ export class TableComponent implements OnInit, AfterViewInit {
     'image', 'firstName', 'lastName', 'phoneNumber',
     'legalAddress.country', 'actions'
   ];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     readonly store: Store,
-    readonly dialog: MatDialog
+    readonly dialog: MatDialog,
+    private actions$: Actions,
+    private matSnackbar: MatSnackBar,
+    private translocoService: TranslocoService,
   ) {
+    this.actions$.pipe(
+      ofActionSuccessful(RemoveUser)
+    ).subscribe(() => {
+      this.store.dispatch(new QueryUsers()).subscribe(() => {
+        this.matSnackbar.open(
+          this.translocoService.translate('messages.successfullyDeleted'),
+          this.translocoService.translate('close'),
+          {
+            duration: 2000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+          }
+        );
+      });
+    });
   }
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
     // this.dataSource.paginator = this.paginator;
@@ -54,4 +73,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     });
   }
 
+  removeUser(userId) {
+    this.store.dispatch(new RemoveUser(userId));
+  }
 }
