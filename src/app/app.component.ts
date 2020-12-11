@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+
 })
-export class AppComponent {
-  title = 'tbc-task';
+export class AppComponent implements OnInit {
+
+  constructor(
+    readonly store: Store
+  ) {
+  }
+
+  ngOnInit() {
+
+  }
 }

@@ -1,0 +1,161 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "clientNumber": 1,
+      "firstName": "Akaki",
+      "lastName": "Khotcholava",
+      "gender": "male",
+      "phoneNumber": "551606644",
+      "image": "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "Senaki",
+        "address": "Vil. Menji"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "Tbilis",
+        "address": "Besation Zghenti str."
+      },
+      "account": [
+        {
+          "accountNumber": 1,
+          "clintNumber": 1,
+          "accountType": 1,
+          "currency": 1,
+          "accountStatus": 1
+        },
+        {
+          "accountNumber": 2,
+          "clintNumber": 2,
+          "accountType": 2,
+          "currency": 2,
+          "accountStatus": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "clientNumber": "01",
+      "firstName": "John",
+      "lastName": "Doe",
+      "gender": "male",
+      "phoneNumber": "111111111",
+      "image": "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "NY",
+        "address": "Castle Rock"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "NY",
+        "address": "Castle Rock"
+      },
+      "account": [
+        {
+          "accountNumber": 1,
+          "clintNumber": 1,
+          "accountType": 1,
+          "currency": 1,
+          "accountStatus": 1
+        },
+        {
+          "accountNumber": 2,
+          "clintNumber": 2,
+          "accountType": 2,
+          "currency": 2,
+          "accountStatus": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "clientNumber": "01",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "gender": "female",
+      "phoneNumber": "2222222",
+      "image": "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "NY",
+        "address": "Castle Rock"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "NY",
+        "address": "Castle Rock"
+      },
+      "account": [
+        {
+          "accountNumber": 1,
+          "clintNumber": 1,
+          "accountType": 1,
+          "currency": 1,
+          "accountStatus": 1
+        },
+        {
+          "accountNumber": 2,
+          "clintNumber": 2,
+          "accountType": 2,
+          "currency": 2,
+          "accountStatus": 2
+        }
+      ]
+    }
+  ],
+  "currencyTypes": [
+    {
+      "id": 1,
+      "value": "GEL"
+    },
+    {
+      "id": 2,
+      "value": "USD"
+    },
+    {
+      "id": 3,
+      "value": "EUR"
+    },
+    {
+      "id": 4,
+      "value": "RUB"
+    }
+  ],
+  "accountTypes": [
+    {
+      "id": 1,
+      "value": "ongoing"
+    },
+    {
+      "id": 2,
+      "value": "saving"
+    },
+    {
+      "id": 3,
+      "value": "accumulating"
+    }
+  ],
+  "accountStatusTypes": [
+    {
+      "id": 1,
+      "value": "active"
+    },
+    {
+      "id": 2,
+      "value": "closed"
+    }
+  ],
+  "genders": [
+    {
+      "id": 1,
+      "value": "Male"
+    },
+    {
+      "id": 2,
+      "value": "Female"
+    }
+  ]
+}

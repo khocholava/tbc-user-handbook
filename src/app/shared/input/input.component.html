@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{label}}</mat-label>
+  <input
+    #input
+    matInput
+    [autocomplete]="autocomplete"
+    [autofocus]="autofocus"
+    [ngModel]="_value"
+    [readonly]="readonly"
+    [type]="type"
+    (ngModelChange)="handleChange($event)"
+  >
+
+  <mat-icon *ngIf="icon" matPrefix>flight_land</mat-icon>
+
+  <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+</mat-form-field>
