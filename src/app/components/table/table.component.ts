@@ -59,6 +59,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   edit(row) {
+    console.log(row);
     this.dialog.open(DialogComponent, {
       width: '50%',
       data: row
@@ -67,5 +68,11 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   removeUser(userId) {
     this.store.dispatch(new RemoveUser(userId));
+  }
+
+  openAddDialog() {
+    this.dialog.open(DialogComponent, {
+      width: '50%'
+    });
   }
 }

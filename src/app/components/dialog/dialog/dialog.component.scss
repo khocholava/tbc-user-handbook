@@ -1,5 +1,11 @@
 @import "src/styles/main";
 
 :host {
-
+  .success-dialog {
+    color: white !important;
+    background-color: green !important;
+    .mat-simple-snackbar-action {
+      color: white !important;
+    }
+  }
 }

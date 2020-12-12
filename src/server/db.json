@@ -2,9 +2,9 @@
   "users": [
     {
       "id": 2,
-      "firstName": "Janeasdasd",
+      "firstName": "akaki",
       "lastName": "Doe",
-      "phoneNumber": "2222222",
+      "phoneNumber": "222222222",
       "legalAddress": {
         "country": "Georgia",
         "city": "NY",
@@ -12,21 +12,25 @@
       },
       "actualAddress": {
         "country": "Georgia",
-        "city": "NY",
+        "city": "NYasdasd",
         "address": "Castle Rock"
       },
       "account": [
         {
+          "accountNumber": "1111",
+          "clientNumber": 1,
+          "currency": 1,
+          "accountStatus": 1
+        },
+        {
           "accountNumber": 1,
           "clientNumber": 1,
-          "accountType": 1,
           "currency": 1,
           "accountStatus": 1
         },
         {
           "accountNumber": 2,
           "clientNumber": 2,
-          "accountType": 2,
           "currency": 2,
           "accountStatus": 2
         }

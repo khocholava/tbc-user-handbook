@@ -3,8 +3,10 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {validatePhoneNumber, validNameInput} from '../../../shared/utlis';
 import {BehaviorSubject} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Store} from '@ngxs/store';
-import {UpdateUser} from '../../../store/user';
+import {Actions, ofActionSuccessful, Store} from '@ngxs/store';
+import {CreateUser, QueryUsers, UpdateUser} from '../../../store/user';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {TranslocoService} from '@ngneat/transloco';
 
 @Component({
   selector: 'app-dialog-form',
@@ -19,8 +21,28 @@ export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
     readonly dialogRef: MatDialogRef<DialogComponent>,
-    readonly store: Store
+    readonly store: Store,
+    private actions$: Actions,
+    private matSnackbar: MatSnackBar,
+    private translocoService: TranslocoService,
   ) {
+    this.actions$.pipe(
+      ofActionSuccessful(CreateUser)
+    ).subscribe(() => {
+      this.store.dispatch(new QueryUsers()).subscribe(() => {
+        this.dialogRef.close();
+        this.matSnackbar.open(
+          this.translocoService.translate('messages.successfullyCreated'),
+          this.translocoService.translate('close'),
+          {
+            duration: 2000,
+            panelClass: 'success-dialog',
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+          }
+        );
+      });
+    });
   }
 
 
@@ -46,7 +68,9 @@ export class DialogComponent implements OnInit {
       phoneNumber: new FormControl('', [validatePhoneNumber, Validators.required]),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
-      account: new FormArray([])
+      account: new FormArray([
+        this.createAccountFormControl()
+      ])
     });
   }
 
@@ -78,30 +102,26 @@ export class DialogComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.formGroup.value);
     const value = this.formGroup.value;
-    if (value) {
+    if (value.id) {
       this.store.dispatch(new UpdateUser(value));
     } else {
-      console.log('asdasd');
+      this.store.dispatch(new CreateUser(value));
     }
   }
 
   ngOnInit(): void {
-    if (this.data) {
-      this.title$.next('editUser');
-    } else {
-      this.title$.next('addUser');
-    }
     const accountFormArray = this.formGroup.controls.account as FormArray;
     if (this.data && this.data.account.length > 0) {
+      this.title$.next('editUser');
       this.formGroup.patchValue(this.data);
+      accountFormArray.clear();
       this.data.account.forEach(account => {
+        console.log(account);
         accountFormArray.controls.push(this.createAccountFormControl(account));
       });
-
     } else {
-      accountFormArray.controls.push(this.createAccountFormControl());
+      this.title$.next('addUser');
     }
   }
 }

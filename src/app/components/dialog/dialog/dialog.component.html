@@ -56,7 +56,8 @@
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    <ng-container *ngFor="let account of accountsFormArray; let i">
+    {{formGroup.value | json}}
+    <ng-container formArrayName="account" *ngFor="let account of accountsFormArray; let i">
       <app-account-form [formControl]="account"></app-account-form>
     </ng-container>
   </form>

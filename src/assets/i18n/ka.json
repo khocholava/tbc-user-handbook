@@ -1,5 +1,6 @@
 {
   "editUser": "მომხმარებლის რედაქტირება",
+  "userHandbook": "მომხმარებლის ცნობარი",
   "firstName": "სახელი",
   "lastName": "გვარი",
   "gender": "სქესი",
@@ -17,6 +18,7 @@
   "accountStatus": "ანგარიშის სტატუსი",
   "actualAddress": "ფაქტიური მისამართი",
   "save": "შენახვა",
+  "addUser": "მომხმარებლის დამატება",
   "edit": "რედაქტირება",
   "remove": "წაშლა",
   "cancel": "გაუქმება",
@@ -25,6 +27,7 @@
   "messages": {
     "successfullyDeleted": "მომხმარევებელი წარმატებით წაიშალა",
     "nameValidityMessage": "სახელი უნდა იწყებოდეს ლათინური ან ქართული სიმბოლოებით",
-    "phoneNumberValidityMessage": "ტელეფონის ნომერი უნდა იწყებოდეს '5' სიმბოლოთი"
+    "phoneNumberValidityMessage": "ტელეფონის ნომერი უნდა იწყებოდეს '5' სიმბოლოთი",
+    "successfullyCreated": "მომხმარებელი წერმატებიტ დაემატა"
   }
 }

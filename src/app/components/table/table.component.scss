@@ -6,7 +6,10 @@
 
   .table-container {
     width: 95%;
-
+    mat-toolbar {
+      width: 100%;
+      @include flex(space-between, center)
+    }
     table {
       width: 100%;
 

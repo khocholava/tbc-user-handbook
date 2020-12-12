@@ -1,4 +1,12 @@
 <div class="mat-elevation-z4 table-container">
+  <mat-toolbar>
+    <app-text>
+      {{'userHandbook'| transloco}}
+    </app-text>
+    <button mat-icon-button matTooltip="{{'addUser' | transloco}}" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-toolbar>
   <table [dataSource]="users$ | async" mat-table>
 
     <ng-container matColumnDef="image">
