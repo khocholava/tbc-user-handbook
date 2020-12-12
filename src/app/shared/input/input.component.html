@@ -5,12 +5,13 @@
     (ngModelChange)="handleChange($event)"
     [autocomplete]="autocomplete"
     [autofocus]="autofocus"
-    [ngModel]="_value"
+    [errorStateMatcher]="matcher"
+    [formControl]="control"
     [readonly]="readonly"
     [type]="type"
     matInput
   >
-  <mat-error *ngIf="formControl.errors !== null">
+  <mat-error *ngIf="control.errors !== null">
     {{ formControl.errors }}
   </mat-error>
   <mat-hint *ngIf="hint">{{hint}}</mat-hint>

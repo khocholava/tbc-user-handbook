@@ -1,20 +1,13 @@
-import {AfterViewInit, Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Optional, Self, ViewChild} from '@angular/core';
+import {ControlValueAccessor, FormControl, NgControl, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
 })
-export class InputComponent implements OnInit, ControlValueAccessor, AfterViewInit {
+export class InputComponent implements OnInit, ControlValueAccessor, AfterViewInit, Validators {
 
   @Input() autofocus: boolean = false;
   @Input() autocomplete: boolean = false;
@@ -27,20 +20,22 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   onTouched: (event?: any) => void;
   @ViewChild('input', {static: false}) input: ElementRef;
   formControl = new FormControl();
-  subscription: Subscription;
-
-  constructor() {
-  }
-
   _value: string;
+  control: FormControl;
 
-  set value(val) {
-    this._value = val;
-    this.onChange(val);
-    this.onTouched();
+  constructor(
+    readonly matcher: ErrorStateMatcher,
+    @Optional() @Self() public ngControl: NgControl,
+  ) {
+    if (ngControl) {
+      ngControl.valueAccessor = this;
+    }
   }
 
   ngOnInit(): void {
+    this.control = this.ngControl && this.ngControl.control
+      ? this.ngControl.control as FormControl
+      : new FormControl();
   }
 
   ngAfterViewInit() {
@@ -74,7 +69,6 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   onFocus() {
     this.input.nativeElement.focus();
   }
-
 }
 
 export type InputType =

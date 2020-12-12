@@ -9,6 +9,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class DialogComponent implements OnInit {
   title$ = new BehaviorSubject<string>('addUser');
+  isValid: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
@@ -22,5 +23,12 @@ export class DialogComponent implements OnInit {
     } else {
       this.title$.next('addUser');
     }
+  }
+
+  isFormValid($event: boolean) {
+    this.isValid = $event;
+  }
+  submit() {
+    console.log(this.data);
   }
 }

@@ -1,7 +1,8 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {
   AbstractControl,
-  ControlValueAccessor, FormControl,
+  ControlValueAccessor,
+  FormControl,
   FormGroup,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
@@ -37,7 +38,6 @@ export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAcce
   }
 
   ngOnInit(): void {
-    console.log(this.formGroup);
     this.valueChangeSubscription = this.formGroup.valueChanges.pipe(
       tap(value => this.onChange && this.onChange(value)),
     ).subscribe();
@@ -68,7 +68,6 @@ export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAcce
   }
 
   writeValue(obj: any): void {
-    console.log(obj);
     this.formGroup.patchValue(obj || {
       accountNumber: null,
       clientNumber: null,

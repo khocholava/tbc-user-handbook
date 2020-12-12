@@ -29,7 +29,7 @@
     </ng-container>
 
     <ng-container matColumnDef="actions">
-      <th class="action-header-cell" *matHeaderCellDef mat-header-cell></th>
+      <th *matHeaderCellDef class="action-header-cell" mat-header-cell></th>
       <td *matCellDef="let element" mat-cell>
         <button (click)="edit(element)" mat-icon-button matTooltip="{{'edit'| transloco}}">
           <mat-icon>edit</mat-icon>

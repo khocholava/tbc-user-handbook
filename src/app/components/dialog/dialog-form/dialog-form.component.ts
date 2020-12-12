@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../models/user';
-import {validatePhoneNumber} from '../../../shared/utlis';
+import {validatePhoneNumber, validNameInput} from '../../../shared/utlis';
 
 @Component({
   selector: 'app-dialog-form',
@@ -10,6 +10,7 @@ import {validatePhoneNumber} from '../../../shared/utlis';
 })
 export class DialogFormComponent implements OnInit {
   formGroup = this.createFormGroup();
+  @Output() isFormValid = new EventEmitter<boolean>();
 
   constructor() {
   }
@@ -21,34 +22,39 @@ export class DialogFormComponent implements OnInit {
 
   @Input()
   set data(data: User) {
-    if (data) {
+    const accountFormArray = this.formGroup.controls.account as FormArray;
+    if (data && data.account.length > 0) {
       this.formGroup.patchValue(data);
-      const accountsFormArray = this.formGroup.controls.account as FormArray;
-      if (data.account.length > 0) {
-        data.account.forEach(() => {
-          accountsFormArray.push(this.createAddressFormGroup());
-        });
-      }
+      data.account.forEach(account => {
+        accountFormArray.controls.push(this.createAccountFormControl(account));
+      });
 
     } else {
-      console.log('no data');
+      accountFormArray.controls.push(this.createAccountFormControl());
     }
   }
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      firstName: new FormControl('', [Validators.max(50), Validators.min(2), Validators.pattern('^[a-zA-Z ]*$')]),
-      lastName: new FormControl(''),
+      firstName: new FormControl('', [
+          Validators.minLength(5),
+          validNameInput,
+          Validators.required,
+        ]
+      ),
+      lastName: new FormControl('', [
+        Validators.minLength(5),
+        validNameInput,
+        Validators.required,
+      ]),
       phoneNumber: new FormControl('', [validatePhoneNumber, Validators.required]),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
-      account: new FormArray([
-        this.createAccountsFormArray()
-      ])
+      account: new FormArray([])
     });
   }
 
-  createAddressFormGroup(data?): FormControl {
+  createAddressFormGroup(): FormControl {
     return new FormControl({
       country: '',
       city: '',
@@ -63,11 +69,11 @@ export class DialogFormComponent implements OnInit {
 
   createAccountControl() {
     const accountFormArray = this.formGroup.controls.account as FormArray;
-    accountFormArray.push(this.createAccountsFormArray());
+    accountFormArray.push(this.createAccountFormControl());
   }
 
-  createAccountsFormArray(): FormControl {
-    return new FormControl({
+  createAccountFormControl(value?: Account): FormControl {
+    return new FormControl(value || {
       accountNumber: null,
       clientNumber: null,
       currency: '',
@@ -76,5 +82,9 @@ export class DialogFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.formGroup.statusChanges.subscribe((data) => {
+        this.isFormValid.emit(data.valid);
+      }
+    );
   }
 }

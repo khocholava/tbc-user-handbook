@@ -6,10 +6,20 @@
     flex-wrap: wrap;
     gap: 1rem;
 
-    app-input {
-      width: 32%;
-      @media (max-width: 768px) {
-        width: 100%;
+    .basic-info {
+      @include flex(flex-start, center);
+      gap: 1rem;
+      width: 100%;
+
+      .field-container {
+        width: 33%;
+
+        app-input {
+          width: 100%;
+          @media (max-width: 768px) {
+            width: 100%;
+          }
+        }
       }
     }
   }

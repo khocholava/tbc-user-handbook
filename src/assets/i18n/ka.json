@@ -23,6 +23,8 @@
   "avatar": "ავატარი",
   "close": "დახურვა",
   "messages": {
-    "successfullyDeleted": "მომხმარევებელი წარმატებით წაიშალა"
+    "successfullyDeleted": "მომხმარევებელი წარმატებით წაიშალა",
+    "nameValidityMessage": "სახელი უნდა იწყებოდეს ლათინური ან ქართული სიმბოლოებით",
+    "phoneNumberValidityMessage": "ტელეფონის ნომერი უნდა იწყებოდეს '5' სიმბოლოთი"
   }
 }

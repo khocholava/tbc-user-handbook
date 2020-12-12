@@ -4,7 +4,6 @@ import {UserSelectors} from '../../store/user/user.selectors';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user';
 import {QueryUsers, RemoveUser} from '../../store/user';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
@@ -16,13 +15,6 @@ import {TranslocoService} from '@ngneat/transloco';
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 export class TableComponent implements OnInit, AfterViewInit {
   @Select(UserSelectors.getUsers)

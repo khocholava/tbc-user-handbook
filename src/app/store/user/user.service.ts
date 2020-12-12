@@ -14,7 +14,6 @@ export class UserService {
   }
 
   queryUsers(): Observable<Array<User>> {
-    console.log('service');
     return this.http.get<Array<User>>(`${this.baseUrl}/users`);
   }
 

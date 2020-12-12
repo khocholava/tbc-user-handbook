@@ -4,7 +4,6 @@ export class QueryUsers {
   static readonly type = '[User] Query Users';
 
   constructor() {
-    console.log('Query Users');
   }
 }
 
