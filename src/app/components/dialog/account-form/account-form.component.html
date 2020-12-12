@@ -1,0 +1,20 @@
+<ng-container [formGroup]="formGroup">
+  <div class="account-form-container">
+    <app-input
+    [label]="'accountNumber' | transloco"
+    formControlName="accountNumber"
+    ></app-input>
+    <app-input
+    [label]="'clientNumber' | transloco"
+    formControlName="clientNumber"
+    ></app-input>
+    <app-input
+    [label]="'currency' | transloco"
+    formControlName="currency"
+    ></app-input>
+    <app-input
+    [label]="'accountStatus' | transloco"
+    formControlName="accountStatus"
+    ></app-input>
+  </div>
+</ng-container>
