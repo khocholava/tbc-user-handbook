@@ -1,7 +1,9 @@
 @import "src/styles/main";
 
 :host {
-  form {
+  width: 100%;
+
+  .address-form-container {
     @include flex(flex-start, center);
     flex-wrap: wrap;
     gap: 1rem;

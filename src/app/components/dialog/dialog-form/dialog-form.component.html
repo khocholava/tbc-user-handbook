@@ -11,4 +11,28 @@
     [label]="'phoneNumber' | transloco"
     formControlName="phoneNumber"
   ></app-input>
+  <div>
+    <app-text>
+      {{'legalAddress' | transloco}}
+    </app-text>
+  </div>
+  <app-dialog-address-form formControlName="legalAddress"></app-dialog-address-form>
+  <div>
+    <app-text>
+      {{'actualAddress' | transloco}}
+    </app-text>
+  </div>
+  <app-dialog-address-form formControlName="actualAddress"></app-dialog-address-form>
+
+  <div>
+    <app-text>
+      {{'account' | transloco}}
+    </app-text>
+    <button mat-icon-button (click)="createAccountControl()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <ng-container *ngFor="let account of accountsFormArray; let i">
+    <app-account-form [formControl]="account"></app-account-form>
+  </ng-container>
 </form>

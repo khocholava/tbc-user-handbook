@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>{{title$ | async | transloco}}</h1>
+<app-text>{{title$ | async | transloco}}</app-text>
 <div mat-dialog-content>
   <app-dialog-form [data]="data"></app-dialog-form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button>{{'cancel'| transloco}}</button>
-  <button mat-button>{{'save' | transloco}}</button>
+  <button mat-button (click)="dialogRef.close()">{{'cancel'| transloco}}</button>
+  <button color="primary" mat-raised-button>{{'save' | transloco}}</button>
 </div>
