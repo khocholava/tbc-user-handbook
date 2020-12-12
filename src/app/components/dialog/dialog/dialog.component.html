@@ -1,8 +1,69 @@
-<app-text>{{title$ | async | transloco}}</app-text>
+<app-text></app-text>
 <div mat-dialog-content>
-  <app-dialog-form (isFormValid)="isFormValid($event)" [data]="data"></app-dialog-form>
+<!--  <app-dialog-form (isFormValid)="isFormValid($event)" [data]="data"></app-dialog-form>-->
+  <form [formGroup]="formGroup" action="" class="form">
+    <div class="basic-info">
+      <div class="field-container">
+        <app-input
+          [label]="'firstName' | transloco"
+          formControlName="firstName"
+        ></app-input>
+        <mat-error *ngIf=" formGroup.controls.firstName.hasError('invalidName')">
+          {{'messages.nameValidityMessage'| transloco}}
+        </mat-error>
+      </div>
+
+      <div class="field-container">
+        <app-input
+          [label]="'lastName'|transloco"
+          formControlName="lastName"
+        ></app-input>
+        <mat-error
+          *ngIf=" formGroup.controls.lastName.hasError('invalidName')">
+          {{'messages.nameValidityMessage'| transloco}}
+        </mat-error>
+      </div>
+
+      <div class="field-container">
+        <app-input
+          [label]="'phoneNumber' | transloco"
+          formControlName="phoneNumber"
+        ></app-input>
+        <mat-error
+          *ngIf=" formGroup.controls.phoneNumber.hasError('numberRange')">
+          {{'messages.phoneNumberValidityMessage'| transloco}}
+        </mat-error>
+      </div>
+    </div>
+
+    <app-text>
+      {{'legalAddress' | transloco}}
+    </app-text>
+
+    <app-dialog-address-form formControlName="legalAddress"></app-dialog-address-form>
+    <div>
+      <app-text>
+        {{'actualAddress' | transloco}}
+      </app-text>
+    </div>
+    <app-dialog-address-form formControlName="actualAddress"></app-dialog-address-form>
+
+    <div>
+      <app-text>
+        {{'account' | transloco}}
+      </app-text>
+      <button (click)="createAccountControl()" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <ng-container *ngFor="let account of accountsFormArray; let i">
+      <app-account-form [formControl]="account"></app-account-form>
+    </ng-container>
+  </form>
+
 </div>
 <div mat-dialog-actions>
   <button (click)="dialogRef.close()" mat-button>{{'cancel'| transloco}}</button>
   <button [disabled]="isValid" color="primary" mat-raised-button (click)="submit()">{{'save' | transloco}}</button>
 </div>
+

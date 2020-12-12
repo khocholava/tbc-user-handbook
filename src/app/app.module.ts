@@ -13,7 +13,6 @@ import {ToolbarComponent} from './components/toolbar/toolbar.component';
 import {TableComponent} from './components/table/table.component';
 import {MaterialModule} from './material/material.module';
 import {DialogComponent} from './components/dialog/dialog/dialog.component';
-import {DialogFormComponent} from './components/dialog/dialog-form/dialog-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputComponent} from './shared/input/input.component';
 import {TranslocoRootModule} from './transloco/transloco-root.module';
@@ -27,7 +26,6 @@ import {AccountFormComponent} from './components/dialog/account-form/account-for
     ToolbarComponent,
     TableComponent,
     DialogComponent,
-    DialogFormComponent,
     InputComponent,
     DialogAddressFormComponent,
     TextComponent,

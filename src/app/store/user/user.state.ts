@@ -64,7 +64,7 @@ export class UserState {
 
   @Action(UpdateUser)
   updateUser({setState, getState}: StateContext<UserStateModel>, {payload}: UpdateUser) {
-    return this.userService.createUser(payload).pipe(
+    return this.userService.updateUser(payload).pipe(
       tap(user => {
         const state = getState();
         const userList = [...state.users];

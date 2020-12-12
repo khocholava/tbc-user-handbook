@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../models/user';
 import {API_BASE_URL} from '../../tokens';
@@ -26,10 +26,14 @@ export class UserService {
   }
 
   updateUser(payload: User): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}/users`, payload);
+    console.log(payload);
+    return this.http.put<User>(`${this.baseUrl}/users/${payload.id}`, payload, headerOption);
   }
 
   removeUser(userId: number): Observable<{}> {
     return this.http.delete<{}>(`${this.baseUrl}/users/${userId}`);
   }
 }
+const headerOption = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};

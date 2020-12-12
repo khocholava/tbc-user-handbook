@@ -2,12 +2,9 @@
   "users": [
     {
       "id": 2,
-      "clientNumber": "01",
-      "firstName": "Jane",
+      "firstName": "Janeasdasd",
       "lastName": "Doe",
-      "gender": "female",
       "phoneNumber": "2222222",
-      "image": "https://www.shareicon.net/data/512x512/2017/01/06/868320_people_512x512.png",
       "legalAddress": {
         "country": "Georgia",
         "city": "NY",
