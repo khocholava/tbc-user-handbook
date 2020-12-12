@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../models/user';
+import {validatePhoneNumber} from '../../../shared/utlis';
 
 @Component({
   selector: 'app-dialog-form',
@@ -36,9 +37,9 @@ export class DialogFormComponent implements OnInit {
 
   createFormGroup(): FormGroup {
     return new FormGroup({
-      firstName: new FormControl(''),
+      firstName: new FormControl('', [Validators.max(50), Validators.min(2), Validators.pattern('^[a-zA-Z ]*$')]),
       lastName: new FormControl(''),
-      phoneNumber: new FormControl(''),
+      phoneNumber: new FormControl('', [validatePhoneNumber, Validators.required]),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
       account: new FormArray([

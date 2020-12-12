@@ -11,6 +11,8 @@
     [label]="'phoneNumber' | transloco"
     formControlName="phoneNumber"
   ></app-input>
+  <mat-error *ngIf="formGroup.controls.phoneNumber.hasError('ageRange') && !formGroup.controls.phoneNumber.hasError('required')">asdasd</mat-error>
+
   <div>
     <app-text>
       {{'legalAddress' | transloco}}

@@ -17,9 +17,9 @@ import {DialogFormComponent} from './components/dialog/dialog-form/dialog-form.c
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputComponent} from './shared/input/input.component';
 import {TranslocoRootModule} from './transloco/transloco-root.module';
-import { DialogAddressFormComponent } from './components/dialog/dialog-address-form/dialog-address-form.component';
-import { TextComponent } from './shared/text/text.component';
-import { AccountFormComponent } from './components/dialog/account-form/account-form.component';
+import {DialogAddressFormComponent} from './components/dialog/dialog-address-form/dialog-address-form.component';
+import {TextComponent} from './shared/text/text.component';
+import {AccountFormComponent} from './components/dialog/account-form/account-form.component';
 
 @NgModule({
   declarations: [

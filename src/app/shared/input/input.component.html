@@ -10,8 +10,8 @@
     [type]="type"
     matInput
   >
-
-  <mat-icon *ngIf="icon" matPrefix>flight_land</mat-icon>
-
+  <mat-error *ngIf="formControl.errors !== null">
+    {{ formControl.errors }}
+  </mat-error>
   <mat-hint *ngIf="hint">{{hint}}</mat-hint>
 </mat-form-field>

@@ -35,7 +35,6 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   _value: string;
 
   set value(val) {
-    console.log(val);
     this._value = val;
     this.onChange(val);
     this.onTouched();
