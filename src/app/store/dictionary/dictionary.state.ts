@@ -51,7 +51,7 @@ export class DictionaryState {
   }
 
   @Action(QueryCurrencyTypes)
-  qoueryCurrencyTypes({setState, getState}: StateContext<DictionaryStateModel>) {
+  queryCurrencyTypes({setState, getState}: StateContext<DictionaryStateModel>) {
     return this.dictionaryService.queryCurrencyTypes()
       .pipe(
         tap(currencyTypes => {
@@ -66,7 +66,7 @@ export class DictionaryState {
 
   @Action(QueryAccountStatusTypes)
   queryAccountStatusTypes({setState, getState}: StateContext<DictionaryStateModel>) {
-    return this.dictionaryService.queryCurrencyTypes()
+    return this.dictionaryService.queryAccountStatusTypes()
       .pipe(
         tap(accountStatusTypes => {
           const state = getState();

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, Optional, Self, ViewChild} from '@angular/core';
 import {ControlValueAccessor, FormControl, NgControl, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {TranslocoService} from '@ngneat/transloco';
 
 @Component({
   selector: 'app-input',
@@ -24,6 +25,7 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
 
   constructor(
     readonly matcher: ErrorStateMatcher,
+    readonly transloCoService: TranslocoService,
     @Optional() @Self() public ngControl: NgControl,
   ) {
     if (ngControl) {

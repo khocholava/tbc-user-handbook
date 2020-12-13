@@ -2,7 +2,6 @@
 <div mat-dialog-content>
   <!--  <app-dialog-form (isFormValid)="isFormValid($event)" [data]="data"></app-dialog-form>-->
   <form [formGroup]="formGroup" class="form">
-
     <div class="image-container">
       <div class="image-field">
         <app-input
@@ -18,9 +17,6 @@
           [label]="'firstName' | transloco"
           formControlName="firstName"
         ></app-input>
-        <mat-error *ngIf=" formGroup.controls.firstName.hasError('invalidName')">
-          {{'messages.nameValidityMessage'| transloco}}
-        </mat-error>
       </div>
 
       <div class="field-container">
@@ -28,10 +24,13 @@
           [label]="'lastName'|transloco"
           formControlName="lastName"
         ></app-input>
-        <mat-error
-          *ngIf=" formGroup.controls.lastName.hasError('invalidName')">
-          {{'messages.nameValidityMessage'| transloco}}
-        </mat-error>
+      </div>
+
+      <div class="field-container">
+        <app-input
+          [label]="'personalId'|transloco"
+          formControlName="personalId"
+        ></app-input>
       </div>
 
       <div class="field-container">
@@ -39,23 +38,19 @@
           [label]="'phoneNumber' | transloco"
           formControlName="phoneNumber"
         ></app-input>
-        <mat-error
-          *ngIf=" formGroup.controls.phoneNumber.hasError('numberRange')">
-          {{'messages.phoneNumberValidityMessage'| transloco}}
-        </mat-error>
       </div>
-      <!--      <mat-form-field appearance="outline">-->
-      <!--        <mat-label>{{'gender'| transloco}}</mat-label>-->
-      <!--        <mat-select formControlName="gender">-->
-      <!--          <mat-option *ngFor="let gender of genders$ | async" [value]="gender.id">-->
-      <!--            {{gender.value}}-->
-      <!--          </mat-option>-->
-      <!--        </mat-select>-->
-      <!--      </mat-form-field>-->
-      <app-select
-        [label]="'gender' | transloco"
-        [data]="genders$ | async"
-      ></app-select>
+      <mat-form-field appearance="outline">
+        <mat-label>{{'gender'| transloco}}</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let gender of genders$ | async" [value]="gender.id">
+            {{gender.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--      <app-select-->
+      <!--        [label]="'gender' | transloco"-->
+      <!--        [data]="genders$ | async"-->
+      <!--      ></app-select>-->
     </div>
 
     <app-text>
@@ -70,19 +65,23 @@
     </div>
     <app-dialog-address-form formControlName="actualAddress"></app-dialog-address-form>
 
-    <div>
-      <app-text>
-        {{'account' | transloco}}
-      </app-text>
-      <button (click)="createAccountControl()" mat-icon-button>
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
-    <ng-container formArrayName="account" *ngFor="let account of accountsFormArray; let i">
+    <ng-container formArrayName="account"  >
+      <ng-container *ngFor="let account of accountsFormArray; let i = index">
+      <div>
+        <app-text>
+          {{'account' | transloco}}
+        </app-text>
+        <button (click)="createAccountControl()" mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button>
+        <button (click)="removeAccountControl(i)" mat-icon-button>
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
       <app-account-form [formControl]="account"></app-account-form>
+      </ng-container>
     </ng-container>
   </form>
-
 </div>
 <div mat-dialog-actions>
   <button (click)="dialogRef.close()" mat-button>{{'cancel'| transloco}}</button>

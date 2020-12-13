@@ -12,7 +12,7 @@
     matInput
   >
   <mat-error *ngIf="control.errors !== null">
-    {{ control.errors }}
+    {{ control.errors | inputError | json}}
   </mat-error>
   <mat-hint *ngIf="hint">{{hint}}</mat-hint>
 </mat-form-field>

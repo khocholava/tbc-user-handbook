@@ -1,6 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {validatePhoneNumber, validNameInput} from '../../../shared/utlis';
+import {validatePhoneNumber, ValidatePId, validNameInput} from '../../../shared/validators';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Select, Store} from '@ngxs/store';
@@ -40,6 +40,7 @@ export class DialogComponent implements OnInit, OnDestroy {
         accountFormArray.controls.push(this.createAccountFormControl(account));
       });
     } else {
+      accountFormArray.controls.push(this.createAccountFormControl());
       this.title$.next('addUser');
     }
   }
@@ -47,15 +48,6 @@ export class DialogComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
-
-  // onImageLinkChange() {
-  //   const imgSubs = this.formGroup.controls.image.valueChanges.pipe(
-  //     tap(value => {
-  //       this.avatarImage.attributes.
-  //     })
-  //   ).subscribe();
-  //   this.subscription.add(imgSubs);
-  // }
 
   get accountsFormArray() {
     const accountsFormArray = this.formGroup.controls.account as FormArray;
@@ -70,13 +62,13 @@ export class DialogComponent implements OnInit, OnDestroy {
     return new FormGroup({
       id: new FormControl(''),
       firstName: new FormControl('', [
-          Validators.minLength(5),
+          Validators.minLength(2),
           validNameInput,
           Validators.required,
         ]
       ),
       lastName: new FormControl('', [
-        Validators.minLength(5),
+        Validators.minLength(2),
         validNameInput,
         Validators.required,
       ]),
@@ -86,6 +78,10 @@ export class DialogComponent implements OnInit, OnDestroy {
         validatePhoneNumber,
       ]),
       gender: new FormControl(),
+      personalId: new FormControl('', [
+        Validators.required,
+        ValidatePId
+      ]),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
       account: new FormArray([
@@ -123,6 +119,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   submit() {
     const value = this.formGroup.value;
+    console.log(value);
     if (value.id) {
       this.store.dispatch(new UpdateUser(value)).subscribe(() => {
         this.dialogRef.close(DialogComponent);

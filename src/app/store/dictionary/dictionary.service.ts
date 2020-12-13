@@ -15,7 +15,7 @@ export class DictionaryService {
   }
 
   queryCurrencyTypes(): Observable<Array<CurrencyType>> {
-    return this.http.get<Array<CurrencyType>>(`${this.baseUrl}/accountTypes`);
+    return this.http.get<Array<CurrencyType>>(`${this.baseUrl}/currencyTypes`);
   }
 
   queryAccountStatusTypes(): Observable<Array<AccountStatusType>> {

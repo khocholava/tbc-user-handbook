@@ -22,6 +22,7 @@ import {AccountFormComponent} from './components/dialog/account-form/account-for
 import { SelectComponent } from './shared/select/select.component';
 import {MdePopoverModule} from '@material-extended/mde';
 import { QueryFormComponent } from './components/dialog/query-form/query-form.component';
+import { InputErrorPipe } from './shared/pipes/input-error.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { QueryFormComponent } from './components/dialog/query-form/query-form.co
     AccountFormComponent,
     SelectComponent,
     QueryFormComponent,
+    InputErrorPipe,
   ],
   imports: [
     BrowserModule,

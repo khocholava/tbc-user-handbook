@@ -31,7 +31,6 @@ export class UserService {
   }
 
   updateUser(payload: User): Observable<User> {
-    console.log(payload);
     return this.http.put<User>(`${this.baseUrl}/users/${payload.id}`, payload, headerOption);
   }
 

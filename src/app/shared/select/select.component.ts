@@ -36,7 +36,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor, Validators
     if (!options && options.length === 0) {
       return;
     }
-    console.log(options);
     this.data = options.map(option => typeof option === 'object' ? option : {
       id: option,
       value: option.toString(),
@@ -65,6 +64,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor, Validators
     this._value = value;
   }
 
+  comparator(object1: any, object2: any) {
+    return object1 && object2 && object1.valhe === object2.value;
+  }
 
   handleChange(event) {
     this.onChange(event);
