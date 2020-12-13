@@ -1,9 +1,10 @@
 import {User} from '../../models/user';
+import {UserQueryParams} from './user.types';
 
 export class QueryUsers {
   static readonly type = '[User] Query Users';
 
-  constructor() {
+  constructor(readonly payload?: UserQueryParams) {
   }
 }
 
@@ -32,5 +33,19 @@ export class RemoveUser {
   static readonly type = '[User] Remove User';
 
   constructor(readonly userId: number) {
+  }
+}
+
+export class GetTotalCount {
+  static readonly type = '[User] Get Total User Count';
+
+  constructor() {
+  }
+}
+
+export class UpdateTotalCount {
+  static readonly type = '[User] Get Total Count';
+
+  constructor(readonly count: number) {
   }
 }

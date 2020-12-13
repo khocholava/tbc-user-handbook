@@ -7,7 +7,7 @@
   "phoneNumber": "ტელეფონის ნომერი",
   "image": "ფოტოსურათი",
   "legalAddress": "იურიდიული მისამართი",
-  "country": "ქცეყანა",
+  "country": "ქვეყანა",
   "city": "ქალაქი",
   "address": "მისამართი",
   "account": "ანგარიში",
@@ -25,10 +25,12 @@
   "avatar": "ავატარი",
   "close": "დახურვა",
   "imageLink": "სურათის ლინკი",
+  "search": "ძებნა",
   "messages": {
     "successfullyDeleted": "მომხმარევებელი წარმატებით წაიშალა",
     "nameValidityMessage": "სახელი უნდა იწყებოდეს ლათინური ან ქართული სიმბოლოებით",
     "phoneNumberValidityMessage": "ტელეფონის ნომერი უნდა იწყებოდეს '5' სიმბოლოთი",
-    "successfullyCreated": "მომხმარებელი წერმატებიტ დაემატა"
+    "successfullyCreated": "მომხმარებელი წერმატებით დაემატა",
+    "successfullyUpdated": "მომხმარებელი წერმატებით დარედაქტირდა"
   }
 }

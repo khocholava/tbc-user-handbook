@@ -12,4 +12,9 @@ export class UserSelectors {
   static getUser(state: UserStateModel) {
     return state.user;
   }
+
+  @Selector([UserState])
+  static getTotalCount(state: UserStateModel) {
+    return state.totalCount;
+  }
 }

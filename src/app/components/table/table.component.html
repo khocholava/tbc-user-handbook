@@ -3,11 +3,28 @@
     <app-text>
       {{'userHandbook'| transloco}}
     </app-text>
-    <button mat-icon-button matTooltip="{{'addUser' | transloco}}" (click)="openAddDialog()">
-      <mat-icon>add</mat-icon>
-    </button>
+
+    <app-input
+    [ngModel]="filter"
+    (ngModelChange)="onFilterChange($event)"
+    [label]="'search'| transloco"
+    ></app-input>
+
+    <div class="action-container">
+      <button
+        [mdePopoverTriggerFor]="appPopover"
+        mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger"
+        mat-icon-button
+        matTooltip="{{'search' | transloco}}">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="{{'addUser' | transloco}}" (click)="openAddDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
-  <table [dataSource]="users$ | async" mat-table>
+  <table [dataSource]="users$ | async " matSortActive="firstName" (matSortChange)="onSortChange($event)" matSort mat-table>
 
     <ng-container matColumnDef="image">
       <th *matHeaderCellDef mat-header-cell>{{'avatar' | transloco}}</th>
@@ -17,7 +34,7 @@
     </ng-container>
 
     <ng-container matColumnDef="firstName">
-      <th *matHeaderCellDef mat-header-cell>{{'firstName'|transloco}}</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header="firstName" >{{'firstName'|transloco}}</th>
       <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
     </ng-container>
 
@@ -51,4 +68,25 @@
     <tr *matHeaderRowDef="matRowDef" mat-header-row></tr>
     <tr *matRowDef="let row; columns: matRowDef;" mat-row></tr>
   </table>
+  <mat-paginator
+    (page)="onPageChange($event)"
+    *ngIf="users$ | async as user"
+    [length]="totalCount$| async"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex -1 "
+    [pageSizeOptions]="pageSizeOptions"
+  >
+
+  </mat-paginator>
+
+
 </div>
+
+
+<mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+  <mat-card style="max-width: 300px">
+    <mat-card-content>
+      A material design popover component created using Angular version 8 with the Angular CDK.
+    </mat-card-content>
+  </mat-card>
+</mde-popover>

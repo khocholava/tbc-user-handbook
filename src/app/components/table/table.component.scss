@@ -8,7 +8,10 @@
     width: 95%;
     mat-toolbar {
       width: 100%;
-      @include flex(space-between, center)
+      @include flex(space-between, center);
+      .action-container {
+
+      }
     }
     table {
       width: 100%;

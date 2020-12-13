@@ -13,8 +13,13 @@ export class UserService {
   ) {
   }
 
-  queryUsers(): Observable<Array<User>> {
-    return this.http.get<Array<User>>(`${this.baseUrl}/users`);
+
+  queryUsers(params?): Observable<Array<User>> {
+    return this.http.get<Array<User>>(`${this.baseUrl}/users`, {
+      params: params
+        ? params
+        : null
+    });
   }
 
   querySingleUser(userId: number): Observable<User> {
@@ -33,7 +38,16 @@ export class UserService {
   removeUser(userId: number): Observable<{}> {
     return this.http.delete<{}>(`${this.baseUrl}/users/${userId}`);
   }
+
+  getUserTotalCount(): Observable<{totalCount: number}> {
+    return this.http.get<{totalCount: number}>(`${this.baseUrl}/totalCount`);
+  }
+
+  updateUserTotalCount(totalCount: number): Observable<{totalCount: number}> {
+    return this.http.put<{totalCount: number}>(`${this.baseUrl}/totalCount`, {totalCount});
+  }
 }
+
 const headerOption = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };

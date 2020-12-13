@@ -9,7 +9,7 @@
           formControlName="image"
           [label]="'imageLink' | transloco"></app-input>
       </div>
-      <img [src]="formGroup.controls.image.value || 'assets/images/empty.jpg'">
+      <img [src]="formGroup.controls.image.value || 'assets/images/empty.jpg'" alt="Avatar">
     </div>
 
     <div class="basic-info">
@@ -44,6 +44,18 @@
           {{'messages.phoneNumberValidityMessage'| transloco}}
         </mat-error>
       </div>
+      <!--      <mat-form-field appearance="outline">-->
+      <!--        <mat-label>{{'gender'| transloco}}</mat-label>-->
+      <!--        <mat-select formControlName="gender">-->
+      <!--          <mat-option *ngFor="let gender of genders$ | async" [value]="gender.id">-->
+      <!--            {{gender.value}}-->
+      <!--          </mat-option>-->
+      <!--        </mat-select>-->
+      <!--      </mat-form-field>-->
+      <app-select
+        [label]="'gender' | transloco"
+        [data]="genders$ | async"
+      ></app-select>
     </div>
 
     <app-text>
@@ -66,7 +78,6 @@
         <mat-icon>add</mat-icon>
       </button>
     </div>
-    {{formGroup.value | json}}
     <ng-container formArrayName="account" *ngFor="let account of accountsFormArray; let i">
       <app-account-form [formControl]="account"></app-account-form>
     </ng-container>

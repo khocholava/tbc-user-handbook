@@ -19,7 +19,6 @@ export class InputComponent implements OnInit, ControlValueAccessor, AfterViewIn
   onChange: (value?: any) => void;
   onTouched: (event?: any) => void;
   @ViewChild('input', {static: false}) input: ElementRef;
-  formControl = new FormControl();
   _value: string;
   control: FormControl;
 

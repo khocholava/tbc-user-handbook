@@ -11,9 +11,11 @@
       @include center();
       flex-direction: column;
       width: 100%;
+
       .image-field {
         width: 100%;
       }
+
       img {
         width: 200px;
         height: 200px;
@@ -26,6 +28,7 @@
       @include flex(flex-start, center);
       gap: 1rem;
       width: 100%;
+      flex-wrap: wrap;
 
       .field-container {
         width: 33%;

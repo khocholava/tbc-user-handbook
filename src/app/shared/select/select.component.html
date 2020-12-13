@@ -1,0 +1,13 @@
+<mat-form-field [appearance]="appearance">
+  <mat-label>{{label}}</mat-label>
+  <mat-select #select>
+    <mat-option *ngFor="let option of data" [value]="option.id">
+      {{option.value}}
+    </mat-option>
+  </mat-select>
+
+  <mat-error *ngIf="control.errors !== null">
+    {{ formControl.errors }}
+  </mat-error>
+  <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+</mat-form-field>

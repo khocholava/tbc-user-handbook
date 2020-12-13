@@ -9,8 +9,11 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {Select, Store} from '@ngxs/store';
+import {DictionarySelectors, QueryAccountStatusTypes, QueryAccountTypes, QueryCurrencyTypes} from '../../../store/dictionary';
+import {AccountStatusType, AccountType} from '../../../models/account';
 
 @Component({
   selector: 'app-account-form',
@@ -30,14 +33,28 @@ import {tap} from 'rxjs/operators';
   ]
 })
 export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAccessor, Validators {
+  @Select(DictionarySelectors.getAccountStatusTypes)
+  accountStatus$: Observable<AccountStatusType>;
+
+  @Select(DictionarySelectors.getAccountTypes)
+  accountTypes$: Observable<AccountType>;
+
+  @Select(DictionarySelectors.getCurrencyTypes)
+  currencyTypes$: Observable<AccountType>;
+
   formGroup = this.createFormGroup();
   onChange: (value: any) => any;
   valueChangeSubscription: Subscription;
 
-  constructor() {
+  constructor(
+    readonly store: Store,
+  ) {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(new QueryAccountStatusTypes());
+    this.store.dispatch(new QueryCurrencyTypes());
+    this.store.dispatch(new QueryAccountTypes());
     this.valueChangeSubscription = this.formGroup.valueChanges.pipe(
       tap(value => this.onChange && this.onChange(value)),
     ).subscribe();

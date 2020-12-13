@@ -1,12 +1,12 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {validatePhoneNumber, validNameInput} from '../../../shared/utlis';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Actions, ofActionSuccessful, Store} from '@ngxs/store';
-import {CreateUser, QueryUsers, UpdateUser} from '../../../store/user';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {TranslocoService} from '@ngneat/transloco';
+import {Select, Store} from '@ngxs/store';
+import {CreateUser, UpdateUser} from '../../../store/user';
+import {DictionarySelectors, QueryGenders} from '../../../store/dictionary';
+import {Gender} from '../../../models/user';
 
 @Component({
   selector: 'app-dialog-form',
@@ -14,41 +14,23 @@ import {TranslocoService} from '@ngneat/transloco';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit, OnDestroy {
+  @Select(DictionarySelectors.queryGenders)
+  genders$: Observable<Array<Gender>>;
+
   formGroup = this.createFormGroup();
   title$ = new BehaviorSubject<string>('addUser');
   isValid: boolean = false;
   subscription: Subscription;
-  avatarImageLink: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
     readonly dialogRef: MatDialogRef<DialogComponent>,
     readonly store: Store,
-    private actions$: Actions,
-    private matSnackbar: MatSnackBar,
-    private translocoService: TranslocoService,
   ) {
-    this.actions$.pipe(
-      ofActionSuccessful(CreateUser)
-    ).subscribe(() => {
-      this.store.dispatch(new QueryUsers()).subscribe(() => {
-        this.dialogRef.close();
-        this.matSnackbar.open(
-          this.translocoService.translate('messages.successfullyCreated'),
-          this.translocoService.translate('close'),
-          {
-            duration: 2000,
-            panelClass: 'success-dialog',
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-          }
-        );
-      });
-    });
   }
 
   ngOnInit(): void {
-    // this.onImageLinkChange();
+    this.store.dispatch(new QueryGenders());
     const accountFormArray = this.formGroup.controls.account as FormArray;
     if (this.data && this.data.account.length > 0) {
       this.title$.next('editUser');
@@ -63,7 +45,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   // onImageLinkChange() {
@@ -103,6 +85,7 @@ export class DialogComponent implements OnInit, OnDestroy {
         Validators.required,
         validatePhoneNumber,
       ]),
+      gender: new FormControl(),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
       account: new FormArray([
@@ -141,9 +124,13 @@ export class DialogComponent implements OnInit, OnDestroy {
   submit() {
     const value = this.formGroup.value;
     if (value.id) {
-      this.store.dispatch(new UpdateUser(value));
+      this.store.dispatch(new UpdateUser(value)).subscribe(() => {
+        this.dialogRef.close(DialogComponent);
+      });
     } else {
-      this.store.dispatch(new CreateUser(value));
+      this.store.dispatch(new CreateUser(value)).subscribe(() => {
+        this.dialogRef.close(DialogComponent);
+      });
     }
   }
 }
