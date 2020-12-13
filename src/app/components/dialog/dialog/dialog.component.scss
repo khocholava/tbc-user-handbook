@@ -1,11 +1,44 @@
 @import "src/styles/main";
 
+
 :host {
-  .success-dialog {
-    color: white !important;
-    background-color: green !important;
-    .mat-simple-snackbar-action {
-      color: white !important;
+  form {
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .image-container {
+      @include center();
+      flex-direction: column;
+      width: 100%;
+      .image-field {
+        width: 100%;
+      }
+      img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+
+    .basic-info {
+      @include flex(flex-start, center);
+      gap: 1rem;
+      width: 100%;
+
+      .field-container {
+        width: 33%;
+
+        app-input {
+          width: 100%;
+          @media (max-width: 768px) {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
+
+

@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {validatePhoneNumber, validNameInput} from '../../../shared/utlis';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Actions, ofActionSuccessful, Store} from '@ngxs/store';
 import {CreateUser, QueryUsers, UpdateUser} from '../../../store/user';
@@ -13,10 +13,12 @@ import {TranslocoService} from '@ngneat/transloco';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent implements OnInit, OnDestroy {
   formGroup = this.createFormGroup();
   title$ = new BehaviorSubject<string>('addUser');
   isValid: boolean = false;
+  subscription: Subscription;
+  avatarImageLink: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
@@ -45,10 +47,41 @@ export class DialogComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    // this.onImageLinkChange();
+    const accountFormArray = this.formGroup.controls.account as FormArray;
+    if (this.data && this.data.account.length > 0) {
+      this.title$.next('editUser');
+      this.formGroup.patchValue(this.data);
+      accountFormArray.clear();
+      this.data.account.forEach(account => {
+        accountFormArray.controls.push(this.createAccountFormControl(account));
+      });
+    } else {
+      this.title$.next('addUser');
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  // onImageLinkChange() {
+  //   const imgSubs = this.formGroup.controls.image.valueChanges.pipe(
+  //     tap(value => {
+  //       this.avatarImage.attributes.
+  //     })
+  //   ).subscribe();
+  //   this.subscription.add(imgSubs);
+  // }
 
   get accountsFormArray() {
     const accountsFormArray = this.formGroup.controls.account as FormArray;
     return accountsFormArray.controls as Array<FormControl>;
+  }
+
+  get image() {
+    return this.formGroup.controls.image as FormControl;
   }
 
   createFormGroup(): FormGroup {
@@ -65,7 +98,11 @@ export class DialogComponent implements OnInit {
         validNameInput,
         Validators.required,
       ]),
-      phoneNumber: new FormControl('', [validatePhoneNumber, Validators.required]),
+      image: new FormControl(''),
+      phoneNumber: new FormControl('', [
+        Validators.required,
+        validatePhoneNumber,
+      ]),
       legalAddress: this.createAddressFormGroup(),
       actualAddress: this.createAddressFormGroup(),
       account: new FormArray([
@@ -107,21 +144,6 @@ export class DialogComponent implements OnInit {
       this.store.dispatch(new UpdateUser(value));
     } else {
       this.store.dispatch(new CreateUser(value));
-    }
-  }
-
-  ngOnInit(): void {
-    const accountFormArray = this.formGroup.controls.account as FormArray;
-    if (this.data && this.data.account.length > 0) {
-      this.title$.next('editUser');
-      this.formGroup.patchValue(this.data);
-      accountFormArray.clear();
-      this.data.account.forEach(account => {
-        console.log(account);
-        accountFormArray.controls.push(this.createAccountFormControl(account));
-      });
-    } else {
-      this.title$.next('addUser');
     }
   }
 }

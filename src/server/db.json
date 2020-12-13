@@ -4,6 +4,7 @@
       "id": 2,
       "firstName": "akaki",
       "lastName": "Doe",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c7/Batman_Infobox.jpg",
       "phoneNumber": "222222222",
       "legalAddress": {
         "country": "Georgia",

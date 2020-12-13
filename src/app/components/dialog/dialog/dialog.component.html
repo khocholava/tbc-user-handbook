@@ -1,7 +1,17 @@
 <app-text></app-text>
 <div mat-dialog-content>
-<!--  <app-dialog-form (isFormValid)="isFormValid($event)" [data]="data"></app-dialog-form>-->
-  <form [formGroup]="formGroup" action="" class="form">
+  <!--  <app-dialog-form (isFormValid)="isFormValid($event)" [data]="data"></app-dialog-form>-->
+  <form [formGroup]="formGroup" class="form">
+
+    <div class="image-container">
+      <div class="image-field">
+        <app-input
+          formControlName="image"
+          [label]="'imageLink' | transloco"></app-input>
+      </div>
+      <img [src]="formGroup.controls.image.value || 'assets/images/empty.jpg'">
+    </div>
+
     <div class="basic-info">
       <div class="field-container">
         <app-input
