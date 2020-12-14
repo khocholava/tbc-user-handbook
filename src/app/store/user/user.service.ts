@@ -15,9 +15,15 @@ export class UserService {
 
 
   queryUsers(params?): Observable<Array<User>> {
+    const requestParams = Object.keys(params).filter(k => {
+      return !!params[k];
+    }).reduce((filteredParams, paramName) => {
+      filteredParams[paramName] = params[paramName];
+      return filteredParams;
+    }, {});
     return this.http.get<Array<User>>(`${this.baseUrl}/users`, {
       params: params
-        ? params
+        ? requestParams
         : null
     });
   }

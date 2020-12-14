@@ -22,15 +22,14 @@
         {
           "accountNumber": "1231",
           "clientNumber": "1231",
-          "currency": 2,
-          "accountStatus": 1,
-          "accountType": 2
+          "currency": "3123123123123",
+          "accountStatus": "1asdawa"
         },
         {
-          "accountNumber": "asda",
-          "clientNumber": "dasd",
-          "currency": "asda",
-          "accountStatus": "asdas"
+          "accountNumber": "1313asdaasdawdasd",
+          "clientNumber": "123asdaasdawd",
+          "currency": "awawdasd",
+          "accountStatus": "1231asdqweqasda"
         }
       ]
     },
@@ -61,10 +60,43 @@
           "accountType": 2
         }
       ]
+    },
+    {
+      "id": 4,
+      "firstName": "akaki",
+      "lastName": "khotcholava",
+      "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
+      "phoneNumber": "551606644",
+      "gender": 1,
+      "personalId": "39001043130",
+      "legalAddress": {
+        "country": "saqartvelo",
+        "city": "asd",
+        "address": "asda"
+      },
+      "actualAddress": {
+        "country": "asda",
+        "city": "asd",
+        "address": "asdsa"
+      },
+      "account": [
+        {
+          "accountNumber": "123321123",
+          "clientNumber": "12312312",
+          "currency": "GEL",
+          "accountStatus": ""
+        },
+        {
+          "accountNumber": "asdasd",
+          "clientNumber": "asda",
+          "currency": "asda",
+          "accountStatus": 1
+        }
+      ]
     }
   ],
   "totalCount": {
-    "totalCount": 2
+    "totalCount": 3
   },
   "currencyTypes": [
     {

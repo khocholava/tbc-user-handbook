@@ -34,7 +34,7 @@ import {AccountStatusType, AccountType} from '../../../models/account';
 })
 export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAccessor, Validators {
   @Select(DictionarySelectors.getAccountStatusTypes)
-  accountStatus$: Observable<AccountStatusType>;
+  accountStatus$: Observable<Array<AccountStatusType>>;
 
   @Select(DictionarySelectors.getAccountTypes)
   accountTypes$: Observable<AccountType>;
@@ -56,7 +56,7 @@ export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAcce
     this.store.dispatch(new QueryCurrencyTypes());
     this.store.dispatch(new QueryAccountTypes());
     this.valueChangeSubscription = this.formGroup.valueChanges.pipe(
-      tap(value => this.onChange && this.onChange(value)),
+      tap(value => this.onChange && this.onChange(value))
     ).subscribe();
   }
 

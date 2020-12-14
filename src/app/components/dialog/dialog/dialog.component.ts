@@ -31,18 +31,22 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(new QueryGenders());
-    const accountFormArray = this.formGroup.controls.account as FormArray;
+
     if (this.data && this.data.account.length > 0) {
       this.title$.next('editUser');
+      const accounts = this.data.account.length > 0 ? this.data.account : [undefined];
+      this.formGroup.setControl('account', new FormArray(
+        accounts.map(account => this.createAccountFormControl(account))
+      ));
       this.formGroup.patchValue(this.data);
-      accountFormArray.clear();
-      this.data.account.forEach(account => {
-        accountFormArray.controls.push(this.createAccountFormControl(account));
-      });
     } else {
-      accountFormArray.controls.push(this.createAccountFormControl());
+      this.formGroup.setControl('account', new FormArray([
+        this.createAccountFormControl()
+      ]));
       this.title$.next('addUser');
     }
+
+    this.formGroup.valueChanges.subscribe(data => console.log({data}));
   }
 
   ngOnDestroy() {
