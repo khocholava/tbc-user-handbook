@@ -1,0 +1,40 @@
+@import "src/styles/main";
+
+:host {
+
+  .account-form-container {
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    gap: 1rem;
+    app-input {
+      width: 49%;
+      @media (max-width: 1200px) {
+        width: 48%;
+      }
+      @media (max-width: 992px) {
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+    }
+    .select-container {
+      width: 100%;
+      @include flex(flex-start, center);
+      flex-wrap: wrap;
+      gap: 1rem;
+      mat-form-field {
+        width: 32%;
+        @media (max-width: 1200px) {
+          width: 48%;
+        }
+        @media (max-width: 992px) {
+          width: 100%;
+        }
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

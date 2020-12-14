@@ -47,10 +47,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <!--      <app-select-->
-      <!--        [label]="'gender' | transloco"-->
-      <!--        [data]="genders$ | async"-->
-      <!--      ></app-select>-->
     </div>
 
     <app-text>
@@ -64,23 +60,27 @@
       </app-text>
     </div>
     <app-dialog-address-form formControlName="actualAddress"></app-dialog-address-form>
+   <div class="accounts">
+     <app-text>
+       {{'accounts' | transloco}}
+     </app-text>
+     <ng-container formArrayName="account">
 
-    <ng-container formArrayName="account"  >
-      <ng-container *ngFor="let account of accountsFormArray; let i = index">
-      <div>
-        <app-text>
-          {{'account' | transloco}}
-        </app-text>
-        <button (click)="createAccountControl()" mat-icon-button>
-          <mat-icon>add</mat-icon>
-        </button>
-        <button (click)="removeAccountControl(i)" mat-icon-button>
-          <mat-icon>remove</mat-icon>
-        </button>
-      </div>
-      <app-account-form [formControl]="account"></app-account-form>
-      </ng-container>
-    </ng-container>
+       <ng-container *ngFor="let account of accountsFormArray; let i = index">
+         <div class="action-container">
+
+           <button (click)="createAccountControl(i + 1)" mat-icon-button>
+             <mat-icon>add</mat-icon>
+           </button>
+           <button (click)="removeAccountControl(i)" [disabled]="accountsFormArray.length === 1" mat-icon-button>
+             <mat-icon>remove</mat-icon>
+           </button>
+         </div>
+         <app-account-form [formControl]="account"></app-account-form>
+       </ng-container>
+     </ng-container>
+
+   </div>
   </form>
 </div>
 <div mat-dialog-actions>

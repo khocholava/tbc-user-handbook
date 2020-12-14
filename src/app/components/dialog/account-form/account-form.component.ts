@@ -13,7 +13,7 @@ import {Observable, Subscription} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {Select, Store} from '@ngxs/store';
 import {DictionarySelectors, QueryAccountStatusTypes, QueryAccountTypes, QueryCurrencyTypes} from '../../../store/dictionary';
-import {AccountStatusType, AccountType} from '../../../models/account';
+import {AccountStatusType, AccountType, CurrencyType} from '../../../models/account';
 
 @Component({
   selector: 'app-account-form',
@@ -37,10 +37,10 @@ export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAcce
   accountStatus$: Observable<Array<AccountStatusType>>;
 
   @Select(DictionarySelectors.getAccountTypes)
-  accountTypes$: Observable<AccountType>;
+  accountTypes$: Observable<Array<AccountType>>;
 
   @Select(DictionarySelectors.getCurrencyTypes)
-  currencyTypes$: Observable<AccountType>;
+  currencyTypes$: Observable<Array<CurrencyType>>;
 
   formGroup = this.createFormGroup();
   onChange: (value: any) => any;
@@ -66,6 +66,7 @@ export class AccountFormComponent implements OnInit, OnDestroy, ControlValueAcce
       clientNumber: new FormControl(null, Validators.required),
       currency: new FormControl('', Validators.required),
       accountStatus: new FormControl('', Validators.required),
+      accountType: new FormControl('', Validators.required),
     });
   }
 

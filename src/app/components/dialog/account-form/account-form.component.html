@@ -8,21 +8,31 @@
       [label]="'clientNumber' | transloco"
       formControlName="clientNumber"
     ></app-input>
-    <app-input
-      [label]="'currency' | transloco"
-      formControlName="currency"
-    ></app-input>
-        <app-input
-          [label]="'accountStatus' | transloco"
-          formControlName="accountStatus"
-        ></app-input>
-<!--    <mat-form-field appearance="accountStatus">-->
-<!--      <mat-label>{{'accountStatus'| transloco}}</mat-label>-->
-<!--      <mat-select formControlName="accountStatus">-->
-<!--        <mat-option *ngFor="let account of accountStatus$ | async" [value]="account.id">-->
-<!--          {{account.value}}-->
-<!--        </mat-option>-->
-<!--      </mat-select>-->
-<!--    </mat-form-field>-->
+    <div class="select-container">
+      <mat-form-field appearance="outline">
+        <mat-label>{{'accountStatus'| transloco}}</mat-label>
+        <mat-select formControlName="accountStatus">
+          <mat-option *ngFor="let accountStatus of accountStatus$ | async" [value]="accountStatus.id">
+            {{accountStatus.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{'currency'| transloco}}</mat-label>
+        <mat-select formControlName="currency">
+          <mat-option *ngFor="let currency of currencyTypes$ | async" [value]="currency.id">
+            {{currency.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{'accountType'| transloco}}</mat-label>
+        <mat-select formControlName="accountType">
+          <mat-option *ngFor="let accountType of accountTypes$ | async" [value]="accountType.id">
+            {{accountType.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 </ng-container>

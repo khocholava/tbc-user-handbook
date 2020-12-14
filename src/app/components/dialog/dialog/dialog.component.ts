@@ -107,9 +107,9 @@ export class DialogComponent implements OnInit, OnDestroy {
     accountFormArray.removeAt(index);
   }
 
-  createAccountControl() {
+  createAccountControl(offset: number) {
     const accountFormArray = this.formGroup.controls.account as FormArray;
-    accountFormArray.push(this.createAccountFormControl());
+    accountFormArray.insert(offset, this.createAccountFormControl());
   }
 
   createAccountFormControl(value?: Account): FormControl {

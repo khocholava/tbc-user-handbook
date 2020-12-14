@@ -1,67 +1,6 @@
 {
   "users": [
     {
-      "id": 2,
-      "firstName": "asd",
-      "lastName": "asd",
-      "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
-      "phoneNumber": "531312323",
-      "gender": 2,
-      "personalId": "12312312312",
-      "legalAddress": {
-        "country": "ასდ",
-        "city": "ასდasdasd",
-        "address": "სდ"
-      },
-      "actualAddress": {
-        "country": "ასდ",
-        "city": "ასდ",
-        "address": "ასდ"
-      },
-      "account": [
-        {
-          "accountNumber": "1231",
-          "clientNumber": "1231",
-          "currency": "3123123123123",
-          "accountStatus": "1asdawa"
-        },
-        {
-          "accountNumber": "1313asdaasdawdasd",
-          "clientNumber": "123asdaasdawd",
-          "currency": "awawdasd",
-          "accountStatus": "1231asdqweqasda"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "firstName": "akaki",
-      "lastName": "khotcholava",
-      "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
-      "phoneNumber": "555555555",
-      "gender": 1,
-      "personalId": "39001043130",
-      "legalAddress": {
-        "country": "asd",
-        "city": "sd",
-        "address": "sd"
-      },
-      "actualAddress": {
-        "country": "asd",
-        "city": "asd",
-        "address": "ads"
-      },
-      "account": [
-        {
-          "accountNumber": "asd",
-          "clientNumber": "asd",
-          "currency": 1,
-          "accountStatus": 2,
-          "accountType": 2
-        }
-      ]
-    },
-    {
       "id": 4,
       "firstName": "akaki",
       "lastName": "khotcholava",
@@ -83,20 +22,64 @@
         {
           "accountNumber": "123321123",
           "clientNumber": "12312312",
-          "currency": "GEL",
-          "accountStatus": ""
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 1
         },
         {
           "accountNumber": "asdasd",
           "clientNumber": "asda",
-          "currency": "asda",
-          "accountStatus": 1
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 2
+        },
+        {
+          "accountNumber": "123123",
+          "clientNumber": "321231412",
+          "currency": 1,
+          "accountStatus": 1,
+          "accountType": 2
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "firstName": "აკაკი",
+      "lastName": "ხოჭოლავა",
+      "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
+      "phoneNumber": "551606644",
+      "gender": 1,
+      "personalId": "39001043130",
+      "legalAddress": {
+        "country": "საქართველო",
+        "city": "თბილისი",
+        "address": "ბ ჟღენტის 42"
+      },
+      "actualAddress": {
+        "country": "საქართველო",
+        "city": "თბილისი",
+        "address": "ბ ჟღენტის 42"
+      },
+      "account": [
+        {
+          "accountNumber": "GEL112312312412312",
+          "clientNumber": "39001043130",
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 1
+        },
+        {
+          "accountNumber": "GEL112312312412314",
+          "clientNumber": "39001043130",
+          "currency": 3,
+          "accountStatus": 1,
+          "accountType": 1
         }
       ]
     }
   ],
   "totalCount": {
-    "totalCount": 3
+    "totalCount": 2
   },
   "currencyTypes": [
     {
