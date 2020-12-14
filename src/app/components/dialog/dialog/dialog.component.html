@@ -8,7 +8,7 @@
         </div>
       </div>
       <img [src]="imageUrl || 'assets/images/empty.jpg'" alt="Avatar">
-      <button mat-raised-button color="primary" (click)="fileInput.click()">{{'uploadImage'| transloco}}
+      <button class="upload-button" mat-raised-button color="primary" (click)="fileInput.click()">{{'uploadImage'| transloco}}
         <mat-icon>publish</mat-icon>
       </button>
     </div>
