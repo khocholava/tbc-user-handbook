@@ -1,1 +1,33 @@
-<p>query-form works!</p>
+<form [formGroup]="formGroup">
+  <app-input
+    [label]="'firstName' | transloco"
+    formControlName="firstName"
+  ></app-input>
+  <app-input
+    [label]="'lastName' | transloco"
+    formControlName="lastName"
+  >
+  </app-input>
+  <app-input
+    [label]="'phoneNumber' | transloco"
+    formControlName="phoneNumber"
+  >
+  </app-input>
+  <app-input
+    [label]="'personalId' | transloco"
+    formControlName="personalId"
+  ></app-input>
+  <mat-form-field appearance="outline">
+    <mat-label>{{'gender'| transloco}}</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option *ngFor="let gender of genders$ | async" [value]="gender.id">
+        {{gender.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button (click)="close()" mat-button>{{'cancel'| transloco}}</button>
+    <button (click)="submit()" color="primary" mat-raised-button>{{'search' | transloco}}</button>
+  </div>
+</form>

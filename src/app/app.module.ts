@@ -19,10 +19,10 @@ import {TranslocoRootModule} from './transloco/transloco-root.module';
 import {DialogAddressFormComponent} from './components/dialog/dialog-address-form/dialog-address-form.component';
 import {TextComponent} from './shared/text/text.component';
 import {AccountFormComponent} from './components/dialog/account-form/account-form.component';
-import { SelectComponent } from './shared/select/select.component';
 import {MdePopoverModule} from '@material-extended/mde';
-import { QueryFormComponent } from './components/dialog/query-form/query-form.component';
-import { InputErrorPipe } from './shared/pipes/input-error.pipe';
+import {QueryFormComponent} from './components/dialog/query-form/query-form.component';
+import {InputErrorPipe} from './shared/pipes/input-error.pipe';
+import {ConfirmationBoxComponent} from './components/dialog/confirmation-box/confirmation-box.component';
 
 @NgModule({
   declarations: [
@@ -34,9 +34,9 @@ import { InputErrorPipe } from './shared/pipes/input-error.pipe';
     DialogAddressFormComponent,
     TextComponent,
     AccountFormComponent,
-    SelectComponent,
     QueryFormComponent,
     InputErrorPipe,
+    ConfirmationBoxComponent,
   ],
   imports: [
     BrowserModule,

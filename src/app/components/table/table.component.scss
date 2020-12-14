@@ -6,13 +6,23 @@
 
   .table-container {
     width: 95%;
+
     mat-toolbar {
       width: 100%;
       @include flex(space-between, center);
-      .action-container {
 
+      .action-container {
       }
     }
+
+    form {
+      padding: 1.5rem;
+
+      app-input {
+        margin: 0;
+      }
+    }
+
     table {
       width: 100%;
 

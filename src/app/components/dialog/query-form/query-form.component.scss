@@ -1,0 +1,28 @@
+@import "src/styles/main";
+
+
+:host {
+  width: 100%;
+  @include flex(center, center);
+  gap: 1rem;
+
+  form {
+    app-input {
+      width: 49%;
+    }
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .button-container {
+      @include flex(flex-end, center);
+
+      button {
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

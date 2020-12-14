@@ -29,6 +29,15 @@ export class DialogComponent implements OnInit, OnDestroy {
   ) {
   }
 
+  get accountsFormArray() {
+    const accountsFormArray = this.formGroup.controls.account as FormArray;
+    return accountsFormArray.controls as Array<FormControl>;
+  }
+
+  get image() {
+    return this.formGroup.controls.image as FormControl;
+  }
+
   ngOnInit(): void {
     this.store.dispatch(new QueryGenders());
 
@@ -46,20 +55,10 @@ export class DialogComponent implements OnInit, OnDestroy {
       this.title$.next('addUser');
     }
 
-    this.formGroup.valueChanges.subscribe(data => console.log({data}));
   }
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
-  }
-
-  get accountsFormArray() {
-    const accountsFormArray = this.formGroup.controls.account as FormArray;
-    return accountsFormArray.controls as Array<FormControl>;
-  }
-
-  get image() {
-    return this.formGroup.controls.image as FormControl;
   }
 
   createFormGroup(): FormGroup {
@@ -67,12 +66,14 @@ export class DialogComponent implements OnInit, OnDestroy {
       id: new FormControl(''),
       firstName: new FormControl('', [
           Validators.minLength(2),
+          Validators.maxLength(50),
           validNameInput,
           Validators.required,
         ]
       ),
       lastName: new FormControl('', [
         Validators.minLength(2),
+        Validators.maxLength(50),
         validNameInput,
         Validators.required,
       ]),
@@ -123,7 +124,6 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   submit() {
     const value = this.formGroup.value;
-    console.log(value);
     if (value.id) {
       this.store.dispatch(new UpdateUser(value)).subscribe(() => {
         this.dialogRef.close(DialogComponent);

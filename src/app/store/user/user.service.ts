@@ -44,12 +44,12 @@ export class UserService {
     return this.http.delete<{}>(`${this.baseUrl}/users/${userId}`);
   }
 
-  getUserTotalCount(): Observable<{totalCount: number}> {
-    return this.http.get<{totalCount: number}>(`${this.baseUrl}/totalCount`);
+  getUserTotalCount(): Observable<{ totalCount: number }> {
+    return this.http.get<{ totalCount: number }>(`${this.baseUrl}/totalCount`);
   }
 
-  updateUserTotalCount(totalCount: number): Observable<{totalCount: number}> {
-    return this.http.put<{totalCount: number}>(`${this.baseUrl}/totalCount`, {totalCount});
+  updateUserTotalCount(totalCount: number): Observable<{ totalCount: number }> {
+    return this.http.put<{ totalCount: number }>(`${this.baseUrl}/totalCount`, {totalCount});
   }
 }
 

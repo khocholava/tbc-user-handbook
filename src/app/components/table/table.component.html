@@ -3,34 +3,31 @@
     <app-text>
       {{'userHandbook'| transloco}}
     </app-text>
-
-    <form [formGroup]="formGroup">
-      <app-input
-      formControlName="search"
-      [label]="'search'| transloco"
-      ></app-input>
-    </form>
-<!--    <app-input-->
-<!--    [ngModel]="filter"-->
-<!--    (ngModelChange)="onFilterChange($event)"-->
-<!--    [label]="'search'| transloco"-->
-<!--    ></app-input>-->
-
     <div class="action-container">
       <button
-        [mdePopoverTriggerFor]="appPopover"
-        mdePopoverTriggerOn="click" #popoverTrigger="mdePopoverTrigger"
-        mat-icon-button
-        matTooltip="{{'search' | transloco}}">
+        #popoverTrigger="mdePopoverTrigger"
+        [mdePopoverTriggerFor]="appPopover" mat-icon-button
+        matTooltip="{{'detailSearch' | transloco}}"
+        mdePopoverTriggerOn="click">
         <mat-icon>search</mat-icon>
       </button>
 
-      <button mat-icon-button matTooltip="{{'addUser' | transloco}}" (click)="openAddDialog()">
+      <button (click)="openAddDialog()" mat-icon-button matTooltip="{{'addUser' | transloco}}">
         <mat-icon>add</mat-icon>
       </button>
     </div>
   </mat-toolbar>
-  <table [dataSource]="users$ | async " matSortActive="firstName" (matSortChange)="onSortChange($event)" matSort mat-table>
+
+  <form [formGroup]="formGroup">
+    <app-input
+      [label]="'searchByName'| transloco"
+      formControlName="search"
+    ></app-input>
+  </form>
+  <table (matSortChange)="onSortChange($event)"
+         [dataSource]="users$ | async "
+         mat-table matSort
+         matSortActive="firstName">
 
     <ng-container matColumnDef="image">
       <th *matHeaderCellDef mat-header-cell>{{'avatar' | transloco}}</th>
@@ -40,7 +37,7 @@
     </ng-container>
 
     <ng-container matColumnDef="firstName">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header="firstName" >{{'firstName'|transloco}}</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header="firstName">{{'firstName'|transloco}}</th>
       <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
     </ng-container>
 
@@ -65,7 +62,7 @@
         <button (click)="edit(element)" mat-icon-button matTooltip="{{'edit'| transloco}}">
           <mat-icon>edit</mat-icon>
         </button>
-        <button (click)="removeUser(element.id)" mat-icon-button matTooltip="{{'remove'| transloco}}">
+        <button (click)="openRemovalDialog(element)" mat-icon-button matTooltip="{{'remove'| transloco}}">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -78,21 +75,22 @@
     (page)="onPageChange($event)"
     *ngIf="users$ | async as user"
     [length]="totalCount$| async"
-    [pageSize]="pageSize"
     [pageIndex]="pageIndex -1 "
     [pageSizeOptions]="pageSizeOptions"
-  >
-
-  </mat-paginator>
-
-
+    [pageSize]="pageSize"
+  ></mat-paginator>
 </div>
 
-
-<mde-popover #appPopover="mdePopover" [mdePopoverOverlapTrigger]="false">
+<mde-popover
+  #appPopover="mdePopover"
+  [mdePopoverCloseOnClick]="false"
+  [mdePopoverOverlapTrigger]="false">
   <mat-card style="max-width: 300px">
     <mat-card-content>
-      A material design popover component created using Angular version 8 with the Angular CDK.
+      <app-query-form
+        (closePopover)="closePopover($event)"
+        (search)="detailSearch($event)"
+      ></app-query-form>
     </mat-card-content>
   </mat-card>
 </mde-popover>

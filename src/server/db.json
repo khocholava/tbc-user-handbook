@@ -1,53 +1,11 @@
 {
   "users": [
     {
-      "id": 4,
-      "firstName": "akaki",
-      "lastName": "khotcholava",
-      "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
-      "phoneNumber": "551606644",
-      "gender": 1,
-      "personalId": "39001043130",
-      "legalAddress": {
-        "country": "saqartvelo",
-        "city": "asd",
-        "address": "asda"
-      },
-      "actualAddress": {
-        "country": "asda",
-        "city": "asd",
-        "address": "asdsa"
-      },
-      "account": [
-        {
-          "accountNumber": "123321123",
-          "clientNumber": "12312312",
-          "currency": 2,
-          "accountStatus": 1,
-          "accountType": 1
-        },
-        {
-          "accountNumber": "asdasd",
-          "clientNumber": "asda",
-          "currency": 2,
-          "accountStatus": 1,
-          "accountType": 2
-        },
-        {
-          "accountNumber": "123123",
-          "clientNumber": "321231412",
-          "currency": 1,
-          "accountStatus": 1,
-          "accountType": 2
-        }
-      ]
-    },
-    {
       "id": 5,
       "firstName": "აკაკი",
       "lastName": "ხოჭოლავა",
       "image": "https://scontent.ftbs5-2.fna.fbcdn.net/v/t1.0-9/93939731_3107646429298763_8195306640291921920_o.jpg?_nc_cat=111&ccb=2&_nc_sid=174925&_nc_ohc=QSt6FqorQqEAX-ijzp1&_nc_ht=scontent.ftbs5-2.fna&oh=a402cdc8287c12d16f0b0f0f2a6e94a9&oe=5FFC1347",
-      "phoneNumber": "551606644",
+      "phoneNumber": "551606643",
       "gender": 1,
       "personalId": "39001043130",
       "legalAddress": {
@@ -76,10 +34,80 @@
           "accountType": 1
         }
       ]
+    },
+    {
+      "id": 6,
+      "firstName": "Bruce",
+      "lastName": "Wayne",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c7/Batman_Infobox.jpg",
+      "phoneNumber": "555555555",
+      "gender": 1,
+      "personalId": "12345678890",
+      "legalAddress": {
+        "country": "USA",
+        "city": "Gotham",
+        "address": "Batman residence "
+      },
+      "actualAddress": {
+        "country": "USA",
+        "city": "Gotham",
+        "address": "Batman residence "
+      },
+      "account": [
+        {
+          "accountNumber": "123123124",
+          "clientNumber": "123123123",
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 3
+        },
+        {
+          "accountNumber": "123123321123",
+          "clientNumber": "312312312312",
+          "currency": 2,
+          "accountStatus": 2,
+          "accountType": 2
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "firstName": "Clack ",
+      "lastName": "Kent",
+      "image": "https://static.wikia.nocookie.net/marvel_dc/images/a/a5/Superman_Vol_5_1_Textless.jpg",
+      "phoneNumber": "555555444",
+      "gender": 1,
+      "personalId": "12312312312",
+      "legalAddress": {
+        "country": "USA",
+        "city": "Smallville",
+        "address": "Village"
+      },
+      "actualAddress": {
+        "country": "USA",
+        "city": "Smallville",
+        "address": "Village"
+      },
+      "account": [
+        {
+          "accountNumber": "USD123321123",
+          "clientNumber": "123321123",
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 2
+        },
+        {
+          "accountNumber": "UER123321123",
+          "clientNumber": "13311233",
+          "currency": 4,
+          "accountStatus": 2,
+          "accountType": 1
+        }
+      ]
     }
   ],
   "totalCount": {
-    "totalCount": 2
+    "totalCount": 3
   },
   "currencyTypes": [
     {

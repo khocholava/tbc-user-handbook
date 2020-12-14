@@ -3,7 +3,7 @@ import {Actions, Select, Store} from '@ngxs/store';
 import {UserSelectors} from '../../store/user/user.selectors';
 import {Observable, Subscription} from 'rxjs';
 import {User} from '../../models/user';
-import {QueryUsers, RemoveUser} from '../../store/user';
+import {QueryUsers} from '../../store/user';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatDialog} from '@angular/material/dialog';
@@ -15,6 +15,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserQueryParams} from '../../store/user/user.types';
 import {FormControl, FormGroup} from '@angular/forms';
 import {filter, tap} from 'rxjs/operators';
+import {MdePopoverTrigger} from '@material-extended/mde';
+import {ConfirmationBoxComponent} from '../dialog/confirmation-box/confirmation-box.component';
 
 @Component({
   selector: 'app-table',
@@ -28,6 +30,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(UserSelectors.getTotalCount)
   totalCount$: Observable<number>;
 
+  @ViewChild(MdePopoverTrigger) trigger: MdePopoverTrigger;
   formGroup = this.createFormGroup();
   subscription = new Subscription();
   dataSource = new MatTableDataSource<User>();
@@ -84,14 +87,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   edit(row) {
     this.dialog.open(DialogComponent, {
       width: '50%',
-      data: row
+      data: row,
     });
   }
-
-  removeUser(userId) {
-    this.store.dispatch(new RemoveUser(userId));
-  }
-
   openAddDialog() {
     this.dialog.open(DialogComponent, {
       width: '50%'
@@ -99,10 +97,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   queryData() {
-
     this.store.dispatch(new QueryUsers(
       {_page: this.pageIndex, _limit: this.pageSize, ...this.param}));
-
   }
 
   onSearchChange() {
@@ -121,6 +117,24 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
         this.queryData();
       })
     ).subscribe();
+  }
+
+  detailSearch($event: any) {
+    this.param = $event;
+    this.pageIndex = 1;
+    this.queryData();
+    this.router.navigate(['/'], {
+      queryParams: {
+        name: $event.firstName,
+        lastname: $event.lastName,
+        personalId: $event.personalId,
+        gender: $event.gender,
+      }
+    });
+  }
+
+  closePopover($event) {
+    this.trigger.closePopover();
   }
 
   onSortChange($event: Sort) {
@@ -150,6 +164,12 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
         page: $event.pageIndex + 1,
         pageSize: $event.pageSize
       }
+    });
+  }
+
+  openRemovalDialog(row?) {
+    this.dialog.open(ConfirmationBoxComponent, {
+      data: row,
     });
   }
 }
