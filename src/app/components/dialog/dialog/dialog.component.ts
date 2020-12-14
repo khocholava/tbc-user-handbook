@@ -21,6 +21,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   title$ = new BehaviorSubject<string>('addUser');
   isValid: boolean = false;
   subscription: Subscription;
+  imageUrl;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) readonly data,
@@ -43,6 +44,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
     if (this.data && this.data.account.length > 0) {
       this.title$.next('editUser');
+      this.imageUrl = this.data.image;
       const accounts = this.data.account.length > 0 ? this.data.account : [undefined];
       this.formGroup.setControl('account', new FormArray(
         accounts.map(account => this.createAccountFormControl(account))
@@ -132,6 +134,21 @@ export class DialogComponent implements OnInit, OnDestroy {
       this.store.dispatch(new CreateUser(value)).subscribe(() => {
         this.dialogRef.close(DialogComponent);
       });
+    }
+  }
+
+  onSelectFile($event: Event) {
+    const file = ($event.target as HTMLInputElement).files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = e => {
+        this.imageUrl = e.target.result;
+        this.formGroup.patchValue({
+          image: e.target.result
+        });
+      };
     }
   }
 }

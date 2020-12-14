@@ -90,6 +90,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
       data: row,
     });
   }
+
   openAddDialog() {
     this.dialog.open(DialogComponent, {
       width: '50%'
@@ -131,9 +132,10 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
         gender: $event.gender,
       }
     });
+    this.closePopover();
   }
 
-  closePopover($event) {
+  closePopover($event?) {
     this.trigger.closePopover();
   }
 

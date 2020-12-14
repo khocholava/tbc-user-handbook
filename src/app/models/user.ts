@@ -9,6 +9,7 @@ export interface User {
   legalAddress: UserAddress;
   actualAddress: UserAddress;
   account: Array<Account>;
+  uploadedImage: string;
 }
 
 

@@ -22,6 +22,10 @@
         width: 100%;
       }
 
+      .upload-button-container {
+        margin-top: .5rem;
+      }
+
       img {
         width: 200px;
         height: 200px;
@@ -37,7 +41,7 @@
       flex-wrap: wrap;
 
       .field-container {
-        width: 33%;
+        width: 32%;
         @media (max-width: 1200px) {
           width: 48%;
         }

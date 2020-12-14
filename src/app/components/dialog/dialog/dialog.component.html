@@ -3,11 +3,14 @@
   <form [formGroup]="formGroup" class="form">
     <div class="image-container">
       <div class="image-field">
-        <app-input
-          [label]="'imageLink' | transloco"
-          formControlName="image"></app-input>
+        <div [hidden]="true">
+          <input (change)="onSelectFile($event)" type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput/>
+        </div>
       </div>
-      <img [src]="formGroup.controls.image.value || 'assets/images/empty.jpg'" alt="Avatar">
+      <img [src]="imageUrl || 'assets/images/empty.jpg'" alt="Avatar">
+      <button mat-raised-button color="primary" (click)="fileInput.click()">{{'uploadImage'| transloco}}
+        <mat-icon>publish</mat-icon>
+      </button>
     </div>
 
     <div class="basic-info">
@@ -84,6 +87,7 @@
 </div>
 <div mat-dialog-actions>
   <button (click)="dialogRef.close()" mat-button>{{'cancel'| transloco}}</button>
-  <button (click)="submit()" [disabled]="!formGroup.valid" color="primary" mat-raised-button>{{'save' | transloco}}</button>
+  <button (click)="submit()" [disabled]="!formGroup.valid" color="primary"
+          mat-raised-button>{{'save' | transloco}}</button>
 </div>
 

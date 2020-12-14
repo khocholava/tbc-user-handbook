@@ -32,7 +32,7 @@
     <ng-container matColumnDef="image">
       <th *matHeaderCellDef mat-header-cell>{{'avatar' | transloco}}</th>
       <td *matCellDef="let user" class="avatar-container" mat-cell>
-        <img alt="Avatar" src="{{user.image}}">
+        <img alt="Avatar" src="{{user.image }}">
       </td>
     </ng-container>
 
@@ -88,7 +88,6 @@
   <mat-card style="max-width: 300px">
     <mat-card-content>
       <app-query-form
-        (closePopover)="closePopover($event)"
         (search)="detailSearch($event)"
       ></app-query-form>
     </mat-card-content>

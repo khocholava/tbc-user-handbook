@@ -39,7 +39,9 @@ export class QueryFormComponent implements OnInit {
   }
 
   close() {
-    this.closePopover.emit('ddadwsssw');
+    this.closePopover.emit(
+      this.formGroup.reset()
+    );
   }
 
   submit() {
