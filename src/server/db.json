@@ -32,6 +32,13 @@
           "currency": 3,
           "accountStatus": 1,
           "accountType": 1
+        },
+        {
+          "accountNumber": "USD112312312412314",
+          "clientNumber": "39001043130",
+          "currency": 2,
+          "accountStatus": 1,
+          "accountType": 1
         }
       ]
     },
@@ -154,11 +161,11 @@
   "genders": [
     {
       "id": 1,
-      "value": "კაცი"
+      "value": "მამრობითი"
     },
     {
       "id": 2,
-      "value": "ქალი"
+      "value": "მდედრობითი"
     }
   ]
 }
