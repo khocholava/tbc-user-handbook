@@ -84,6 +84,6 @@
 </div>
 <div mat-dialog-actions>
   <button (click)="dialogRef.close()" mat-button>{{'cancel'| transloco}}</button>
-  <button (click)="submit()" [disabled]="isValid" color="primary" mat-raised-button>{{'save' | transloco}}</button>
+  <button (click)="submit()" [disabled]="!formGroup.valid" color="primary" mat-raised-button>{{'save' | transloco}}</button>
 </div>
 
